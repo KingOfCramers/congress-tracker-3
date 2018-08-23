@@ -1,11 +1,19 @@
 import React from "react";
+import { removeTweet } from "../actions/tweets";
 
-const Tweet = (props) => {
-  return (
+class Tweet extends React.Component {
+
+  onRemove(e) {
+    removeTweet({_id: this.props.data._id});
+  };
+
+  render(){
+    return (
       <div className="tweetWrapper">
-          <p className="tweetText"> {props.data.handle} </p>
+        <p className="tweetText" _id={this.props.data._id} onClick={this.onRemove.bind(this)}> {this.props.data.handle} </p>
       </div>
-  );
+    );
+  }
 }
 
 export default Tweet;

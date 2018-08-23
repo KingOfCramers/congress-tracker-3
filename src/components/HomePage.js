@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import { connect } from "react-redux";
-import { startAddTweet } from "../actions/tweets";
-import { addCase } from "../actions/cases";
 
 class HomePage extends Component {
 

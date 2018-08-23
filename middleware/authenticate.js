@@ -17,11 +17,9 @@ const authenticate = (req, res, next) => { // The actual route will not run unti
             })
         .catch(() => {
 
-            /// DEV
-            /// Before we have authenticate properly set up, we should just return the standard ._id for dev purposes
             if(env === "development"){
                 req.user = {
-                    _id: "5b7f20fa32bda955359e6e0e"
+                    _id: "5b7f2562cb097d57b728daf1" // Setup based on ._id of relevant user.
                 };
                 next();
             } else {

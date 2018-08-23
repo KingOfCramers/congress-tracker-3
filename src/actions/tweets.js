@@ -1,4 +1,3 @@
-import uuid from "uuid";
 import axios from "axios";
 
 // Action generators
@@ -10,10 +9,10 @@ export const addTweet = ({ handle, _id }) => ({
   }
 });
 
-export const removeTweet = ({ id } = {}) => ({
+export const removeTweet = ({ _id } = {}) => ({
   type: "REMOVE_TWEET",
-  tweet: {
-    id
+  account: {
+    _id
   }
 });
 
