@@ -4,7 +4,7 @@ const path = require("path");
 const _ = require("lodash");
 
 const get_trackers = (req,res) => {
-  User.findOne({_id: "5b7ef883c69aac4cf99acb89"}).then((user) => { // ARTIFICIAL IMPORT
+  User.findOne({_id: req.user._id }).then((user) => { // ARTIFICIAL IMPORT
       res.status(200).send(user.trackers)
   })
   .catch((e) => {
@@ -57,7 +57,9 @@ const post_court_case = (req,res) => {
           res.status(400).send(e);
     })};
 const post_tweet = (req,res) => {
-    User.findOne({_id: "5b7ef883c69aac4cf99acb89"})
+    console.log(req.user._id);
+    console.log(req.body);
+    User.findOne({ _id: req.user._id })
         .then((user) => {
             user.trackers.tweets.push(req.body);
             return user.save();
@@ -68,7 +70,6 @@ const post_tweet = (req,res) => {
                 .send(new_tweet)
         })
         .catch((e) => {
-            console.log("Request failed.")
             res.status(400).send(e);
         });}
 const post_legislation = (req,res) => {
@@ -161,7 +162,7 @@ module.exports = (app) => {
   app.post("/api/users/login", post_login_user, test);
   app.post("/api/users/me/trackers/court_cases", authenticate, caseValidator, post_court_case);
   app.post("/api/users/me/trackers/legislation", authenticate, legislationValidator, post_legislation);
-  app.post("/api/users/me/trackers/tweets", post_tweet); // Skip tweet validation and authentication for now...
+  app.post("/api/users/me/trackers/tweets", authenticate, post_tweet); // Skip tweet validation and authentication for now...
   app.delete("/api/users/me/trackers/court_cases/:case_id", authenticate, delete_court_case);
   app.delete("/api/users/me/trackers/tweets/:tweet_id", authenticate, delete_tweet);
   app.delete("/api/users/me/trackers/legislation/:legislation_id", authenticate, delete_legislation);

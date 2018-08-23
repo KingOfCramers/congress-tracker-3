@@ -1,5 +1,5 @@
 // CONFIGURE DATABASES
-var env = process.env.NODE_ENV || 'development'; // Only set on Heroku. Configure on package.json file for test/development environments. Allows us to use different databases.
+const env = process.env.NODE_ENV || 'development'; // Only set on Heroku. Configure on package.json file for test/development environments. Allows us to use different databases.
 
 if(env === "development" || env === "test") {
    var config = require("./config.json")
@@ -7,4 +7,8 @@ if(env === "development" || env === "test") {
    Object.keys(envConfig).forEach((key) => {
         process.env[key] = envConfig[key]
    })
+}
+
+module.exports = {
+  env
 }
