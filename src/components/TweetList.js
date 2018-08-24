@@ -5,7 +5,7 @@ import tweetFilter from "../selectors/tweets";
 
 const TweetList = (props) => (
   <div>
-    {props.tweets.map((data,i) => <Tweet key={i} data={data} /> )}
+    {props.tweets.map((data,i) => <Tweet key={i} handle={data.handle} _id={data._id} /> )}
   </div>
 );
 

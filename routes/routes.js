@@ -88,6 +88,7 @@ const post_legislation = (req,res) => {
       });};
 const delete_tweet = (req,res) => {
   const tweet_id = req.params.tweet_id;
+  console.log(tweet_id);
   User.findOne({_id: req.user._id})
       .then((user) => {
           user.trackers.tweets.id(tweet_id).remove();

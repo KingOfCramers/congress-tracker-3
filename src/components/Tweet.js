@@ -1,19 +1,18 @@
 import React from "react";
-import { removeTweet } from "../actions/tweets";
-
+import { startRemoveTweet } from "../actions/tweets";
+import { connect } from "react-redux"
 class Tweet extends React.Component {
-
-  onRemove(e) {
-    removeTweet({_id: this.props.data._id});
-  };
 
   render(){
     return (
       <div className="tweetWrapper">
-        <p className="tweetText" _id={this.props.data._id} onClick={this.onRemove.bind(this)}> {this.props.data.handle} </p>
+        <p className="tweetText"> {this.props.handle} </p>
+        <button onClick={() => {
+          this.props.dispatch(startRemoveTweet(this.props._id));
+        }}>Click</button>
       </div>
     );
   }
 }
 
-export default Tweet;
+export default connect()(Tweet);
