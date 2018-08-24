@@ -163,7 +163,7 @@ module.exports = (app) => {
   app.post("/api/users/login", post_login_user, test);
   app.post("/api/users/me/trackers/court_cases", authenticate, caseValidator, post_court_case);
   app.post("/api/users/me/trackers/legislation", authenticate, legislationValidator, post_legislation);
-  app.post("/api/users/me/trackers/tweets", authenticate, post_tweet); // Skip tweet validation and authentication for now...
+  app.post("/api/users/me/trackers/tweets", authenticate, tweetValidator, post_tweet); // Skip tweet validation and authentication for now...
   app.delete("/api/users/me/trackers/court_cases/:case_id", authenticate, delete_court_case);
   app.delete("/api/users/me/trackers/tweets/:tweet_id", authenticate, delete_tweet);
   app.delete("/api/users/me/trackers/legislation/:legislation_id", authenticate, delete_legislation);

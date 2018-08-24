@@ -4,12 +4,13 @@ const axios = require("axios");
 const config = require("../config/config.js");
 
 tweetValidator = function(req, res, next){
-   var new_handle = req.body.account;
+   var new_handle = req.body.handle;
     var re = /^@?(\w){1,15}$/;
     if(re.test(new_handle)){
         var url = `https://twitter.com/${new_handle}`;
         axios.get(url)
             .then((response) => {
+                console.log(`${new_handle} is a valid twitter handle.`)
                 next();
             })
             .catch((error) => {
